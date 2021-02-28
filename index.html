@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Welcome to your Store</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+ 
+  <script>
+    function btn(model_id){
+      event.preventDefault();
+      sessionStorage.setItem("model_id", model_id);
+      // alert("Choice successful!");
+      window.location.href = "video.html";
+    }
+  </script>
+  
+</head>
+<body>
+  <b><center>Welcome to store</center></b>
+  <br><br><br><br>
+  <center><img src = "https://cdn.glitch.com/606d66ce-a36d-420d-9537-5d9d6d8c0df0%2Fhoody.jpg?v=1614517995274"/></center><br>
+  <center><button onclick="btn(1)">Try Here</button></center><br>
+  <center><img src = "https://cdn.glitch.com/606d66ce-a36d-420d-9537-5d9d6d8c0df0%2Fcoat.jpg?v=1614518052433"/></center><br>
+  <center><button onclick="btn(2)">Try Here</button></center><br>
+</body>
+</html>
