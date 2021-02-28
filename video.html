@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>Your AR Trial Room</title>
+  	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/96/three.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.2/dat.gui.min.js"></script>
+	<script src='js/pose_util.js'></script>
+	<script src='js/pose.js'></script>
+	<script src='js/libs/stats.min.js'></script>
+	<script src="js/loaders/GLTFLoader.js"></script>
+	<script src="js/loaders/VRMLoader.js"></script>
+	<script src="https://unpkg.com/@tensorflow/tfjs"></script>
+	<script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body style="margin:0px; overflow:hidden;">
+  	<div id="loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+		<img src="./assets/loading.gif">
+	</div>
+<video id="video" playsinline style="display: none;"></video>
+<canvas id="output" />
+</body>
+</html>
