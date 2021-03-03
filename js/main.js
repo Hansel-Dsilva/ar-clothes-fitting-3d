@@ -44,7 +44,8 @@ let dst = {};
 // Model selection
 let models = [null,
          "https://cdn.glitch.com/606d66ce-a36d-420d-9537-5d9d6d8c0df0%2Fwhite-hoodie-black-pants.vrm?v=1614516887710",
-          "https://cdn.glitch.com/606d66ce-a36d-420d-9537-5d9d6d8c0df0%2FCoat.vrm?v=1614513506466"
+          "https://cdn.glitch.com/606d66ce-a36d-420d-9537-5d9d6d8c0df0%2FCoat.vrm?v=1614513506466",
+          "https://cdn.glitch.com/606d66ce-a36d-420d-9537-5d9d6d8c0df0%2Funiform-skirt.vrm?v=1614519952036"
          ];
 
 
@@ -297,80 +298,27 @@ const bindPage = async () => {
 				joint["upperArmLL"] = joint["upperArmL"].clone().add(vecX);
 				updateJoint(joint, "upperArmLL", "upperArmL", "upperArmR", dst["upperChest"], -20, 20);
 			}
-			//Head
-/*
-			if(joint["eyeL"] && joint["eyeR"]){
-				if(joint["nose"]){
-					let quatX = new THREE.Quaternion();
-					let quatY = new THREE.Quaternion();
-					let quatZ = new THREE.Quaternion();
-					const adjX = 0.1, minX = deg2rad(-45), maxX = deg2rad(45);
-					const adjY = 0.2, minY = deg2rad(-45), maxY = deg2rad(45);
-					const adjZ = 0.1, minZ = deg2rad(-45), maxZ = deg2rad(45);
 
-					//////////////////////////////////////////////////////////
-					// The ratio of the height from the center of both eyes to the nose and the same part of the model is the angle of the X axis of the neck
-// Downward if the distance is long, upward if the distance is short
-// If the nose is raised above the eyes, the posture estimation will fail first, so don't think about it.
-					let eyeL2R = joint["eyeR"].clone().sub(joint["eyeL"]).normalize();
-					let eyeL2Nose = joint["nose"].clone().sub(joint["eyeL"]);
-
-// Project the vector from the left eye to the vector from the right eye and the vector from the left eye to the nose
-// So be careful as it is not actually the "center of both eyes"					
-let relEyeL2NosePrjEyeL2R = eyeL2Nose.projectOnVector(eyeL2R);
-					let absEyeL2NosePrjEyeL2R = relEyeL2NosePrjEyeL2R.clone().add(joint["eyeL"]);
-
-					let eyeLen = joint["eyeR"].clone().sub(joint["eyeL"]).length();
-					let noseLen = absEyeL2NosePrjEyeL2R.clone().sub(joint["nose"]).length();
-
-					let axisX = new THREE.Vector3(-1, 0, 0);
-					let angleX = ((eyeLen / noseLen) / (dst["angleXBase"])) * adjX;
-					angleX = Math.max(minX, Math.min(maxX, angleX));
-					quatX.setFromAxisAngle(axisX, angleX);
-
-					//////////////////////////////////////////////////////////
-					// The position of the nose on the axes of both eyes is the angle of the Y axis of the neck
-					// Divide by 2 because I want to compare with the center					
-					let halfEyeLen = eyeLen / 2;
-					let projLen = relEyeL2NosePrjEyeL2R.length();
-					let axisY = new THREE.Vector3(0, -1, 0);
-
-					// Subtract 1 so that the right direction is positive and the left direction is negative
-					let angleY = ((projLen / halfEyeLen) - 1) * adjY;
-					angleY = Math.max(minY, Math.min(maxY, angleY));
-					quatY.setFromAxisAngle(axisY, angleY);
-
-					//////////////////////////////////////////////////////////
-					// The difference between the angle of both shoulders and the angle of both eyes is the angle of the Z axis of the neck
-					if(joint["upperArmL"] && joint["upperArmR"]){
-						let armL2R = joint["upperArmR"].clone().sub(joint["upperArmL"]).normalize();
-						let axisZ = eyeL2R.clone().cross(armL2R).normalize();
-						let angleZ = Math.acos(eyeL2R.dot(armL2R)) * adjZ;
-						angleZ = Math.max(minZ, Math.min(maxZ, angleZ));
-						quatZ.setFromAxisAngle(axisZ, angleZ)
-					}
-
-					//////////////////////////////////////////////////////////
-					//// The X axis bends at the head position instead of the neck
-					let quat = quatY.multiply(quatZ);
-					dst["neck"].rotation.setFromQuaternion(quat);
-					dst["head"].rotation.setFromQuaternion(quatX);
-				}
-			}
-*/
 			//Waist
 			if(joint["upperLegL"] && joint["upperLegR"]){
 				//Since there is no reference point, make a temporary joint in the left horizontal direction of the left shoulder
 				joint["upperLegLL"] = joint["upperLegL"].clone().add(vecX);
 				updateJoint(joint, "upperLegLL", "upperLegL", "upperLegR", dst["spine"], -10, 10);
 
-				const adjX = 2.0;
+// 				const adjX = 2.0;
+
+// 				let pos = joint["upperLegL"].clone().add(joint["upperLegR"]).divideScalar(2);
+// 				let x = -(pos.x - (videoWidth / 2)) / videoWidth;
+// 				dst["hips"].position.x = x * adjX;
+        
+      
+        const adjX = 3;
 
 				let pos = joint["upperLegL"].clone().add(joint["upperLegR"]).divideScalar(2);
 				let x = -(pos.x - (videoWidth / 2)) / videoWidth;
 				dst["hips"].position.x = x * adjX;
 
-				//adjJoint (-20, 0, 0, dst ["spine"]); // Dummy
+
 			}
 			//Left leg
 			if(joint["upperLegL"]){
